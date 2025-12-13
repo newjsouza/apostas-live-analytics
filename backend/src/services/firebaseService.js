@@ -29,6 +29,10 @@ class FirebaseService {
    */
   async saveMatch(matchData) {
     try {
+      if (!this.db) {
+        logger.warn('Firebase not configured, skipping save');
+        return false;
+      }
       const matchRef = this.db.collection('matches').doc(matchData.fixture.id.toString());
       await matchRef.set({
         ...matchData,
@@ -47,6 +51,10 @@ class FirebaseService {
    */
   async getMatch(fixtureId) {
     try {
+      if (!this.db) {
+        logger.warn('Firebase not configured');
+        return null;
+      }
       const matchDoc = await this.db.collection('matches').doc(fixtureId.toString()).get();
       if (matchDoc.exists) {
         return matchDoc.data();
@@ -63,6 +71,10 @@ class FirebaseService {
    */
   async savePrediction(fixtureId, prediction) {
     try {
+      if (!this.db) {
+        logger.warn('Firebase not configured, skipping save');
+        return false;
+      }
       const predictionRef = this.db.collection('predictions').doc(fixtureId.toString());
       await predictionRef.set({
         fixtureId,
@@ -82,6 +94,10 @@ class FirebaseService {
    */
   async getLiveMatches() {
     try {
+      if (!this.db) {
+        logger.warn('Firebase not configured');
+        return [];
+      }
       const snapshot = await this.db.collection('matches')
         .where('fixture.status.short', 'in', ['1H', '2H', 'HT', 'ET', 'P'])
         .get();
@@ -102,6 +118,10 @@ class FirebaseService {
    */
   async saveBettingAnalytics(fixtureId, analytics) {
     try {
+      if (!this.db) {
+        logger.warn('Firebase not configured, skipping save');
+        return false;
+      }
       const analyticsRef = this.db.collection('analytics').doc(fixtureId.toString());
       await analyticsRef.set({
         fixtureId,

@@ -4,6 +4,9 @@ const telegramService = require('./telegramService');
 const perplexityService = require('./perplexityService');
 const logger = require('../utils/logger');
 
+// Configuration constants
+const LIVE_MATCH_UPDATE_INTERVAL_MS = 30000; // 30 seconds
+
 class AnalyticsService {
   constructor() {
     this.liveMatchesCache = new Map();
@@ -22,7 +25,7 @@ class AnalyticsService {
     // Update every 30 seconds
     this.updateInterval = setInterval(() => {
       this.updateLiveMatches(io);
-    }, 30000);
+    }, LIVE_MATCH_UPDATE_INTERVAL_MS);
   }
 
   /**

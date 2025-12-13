@@ -12,6 +12,7 @@ class PerplexityService {
           'Content-Type': 'application/json'
         }
       });
+      this.endpoint = ''; // Base URL already includes /chat/completions
       logger.info('Perplexity AI service initialized');
     } else {
       logger.warn('Perplexity API key not configured');
@@ -45,7 +46,7 @@ Please provide:
 
 Keep the response concise and focused on betting analytics.`;
 
-      const response = await this.client.post('', {
+      const response = await this.client.post(this.endpoint, {
         model: 'llama-3.1-sonar-small-128k-online',
         messages: [
           {
@@ -103,7 +104,7 @@ Provide:
 
 Keep it brief and actionable.`;
 
-      const response = await this.client.post('', {
+      const response = await this.client.post(this.endpoint, {
         model: 'llama-3.1-sonar-small-128k-online',
         messages: [
           {

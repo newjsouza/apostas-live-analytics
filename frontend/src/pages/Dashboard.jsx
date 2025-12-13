@@ -4,6 +4,9 @@ import { useLiveMatches, useAnalyticsUpdates } from '../hooks/useSocket';
 import MatchCard from '../components/MatchCard';
 import './Dashboard.css';
 
+// Configuration constants
+const MAX_STATS_DISPLAYED = 6;
+
 const Dashboard = () => {
   const [todayMatches, setTodayMatches] = useState([]);
   const [selectedMatch, setSelectedMatch] = useState(null);
@@ -123,7 +126,7 @@ const Dashboard = () => {
                         <div key={idx} className="team-stats">
                           <h5>{stat.team.name}</h5>
                           <div className="stats-grid">
-                            {stat.statistics.slice(0, 6).map((s, i) => (
+                            {stat.statistics.slice(0, MAX_STATS_DISPLAYED).map((s, i) => (
                               <div key={i} className="stat-item">
                                 <span className="stat-label">{s.type}</span>
                                 <span className="stat-value">{s.value}</span>
