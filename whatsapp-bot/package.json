@@ -1,0 +1,26 @@
+{
+  "name": "apostas-live-analytics-whatsapp-bot",
+  "version": "1.0.0",
+  "description": "Bot WhatsApp para apostas ao vivo com análise de parciais e Kelly Criterion",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js",
+    "dev": "nodemon bot.js",
+    "start-api": "node api-bot.js"
+  },
+  "keywords": ["whatsapp", "bot", "apostas", "analytics"],
+  "author": "newjsouza",
+  "license": "MIT",
+  "dependencies": {
+    "@baileys/baileys": "^6.0.0",
+    "axios": "^1.6.0",
+    "express": "^4.18.0",
+    "dotenv": "^16.3.0",
+    "qrcode-terminal": "^0.12.0",
+    "pino": "^8.16.0",
+    "firebase-admin": "^12.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.0"
+  }
+}
