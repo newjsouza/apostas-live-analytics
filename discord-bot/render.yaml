@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: discord-bot
+    runtime: node
+    rootDir: discord-bot
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DISCORD_TOKEN
+        fromEnv: DISCORD_TOKEN
+      - key: DISCORD_CLIENT_ID
+        fromEnv: DISCORD_CLIENT_ID
+      - key: BANCA_TOTAL
+        fromEnv: BANCA_TOTAL
+      - key: NODE_ENV
+        value: production
